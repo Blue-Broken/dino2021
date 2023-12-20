@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        ammoValue.text = currentMunition;
+        ammoValue.text = currentMunition.ToString();
 
         if(!Died && !isLoading)
         {
@@ -187,7 +187,7 @@ public class PlayerController : MonoBehaviour
             if (!Input.GetButton("Aim") || !armed)
             {
 
-                ammo.SetActive(true);
+                ammo.SetActive(false);
                 if (direction.magnitude != 0 && !reading)
                 {
                     body.MovePosition(body.position + direction * speed * Time.fixedDeltaTime);
@@ -226,7 +226,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                ammo.SetActive(false);
+                ammo.SetActive(true);
                 if (!stoped)
                 {
                     stoped = true;
@@ -266,8 +266,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator ShortAtack()
     {
-        anim.SetTrigger("ShortAtack");
-        yield return new WaitForSeconds(shortAtackDelay());
+        animator.SetTrigger("ShortAtack");
+        yield return new WaitForSeconds(shortAtackDelay);
         atacking = false;
     } 
 

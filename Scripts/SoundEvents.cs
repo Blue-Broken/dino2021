@@ -13,6 +13,8 @@ public AudioClip walkgrass;
 public AudioClip walkCave;
 public AudioClip walkWater;
 
+public AudioClip damage;
+
 [Header("Variables")]
 public bool grass;
 public bool cave;
@@ -68,6 +70,13 @@ public void Shoot()
     {
      audio1.Stop();
      audio1.volume = 1f;
+    }
+
+    public void Damage()
+    {
+     audio1.clip  = damage;
+     audio1.Play();
+     audio1.volume = 0.8f;
     }
 
 public void Recharge()
