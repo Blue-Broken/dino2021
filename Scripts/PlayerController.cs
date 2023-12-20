@@ -65,6 +65,8 @@ public class PlayerController : MonoBehaviour
     private EnemyBase currentEnemyScript;
     private bool rec;
     public float rechageDelay;
+    private bool atacking;
+    public float shortAtackDelay;
 
     [Header("Variables of Health")]
     public int life;
@@ -82,6 +84,9 @@ public class PlayerController : MonoBehaviour
     [Header("Variables of Death")]
     public bool Died;
     public SpriteRenderer blackCover;
+    
+    public GameObject ammo;
+    public Text ammoValue;
 
     private void Awake()
     {
@@ -109,6 +114,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        ammoValue.text = currentMunition;
+
         if(!Died && !isLoading)
         {
             if (!gameM.paused)
@@ -137,6 +144,11 @@ public class PlayerController : MonoBehaviour
             Pause();
         }
 
+        if(Input.GetButtonDown("Action") && !atacking)
+        {
+            atacking = true;
+            StartCoroutine(ShortAtack());
+        }
         //Test Area
         if (Input.GetButtonDown("Cure"))
         {
@@ -174,6 +186,8 @@ public class PlayerController : MonoBehaviour
             #region Moviment
             if (!Input.GetButton("Aim") || !armed)
             {
+
+                ammo.SetActive(true);
                 if (direction.magnitude != 0 && !reading)
                 {
                     body.MovePosition(body.position + direction * speed * Time.fixedDeltaTime);
@@ -198,6 +212,7 @@ public class PlayerController : MonoBehaviour
                 if (stoped)
                 {
                     stoped = false;
+                   
                 }
 
                 if(life < maxLife / 3)
@@ -211,6 +226,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                ammo.SetActive(false);
                 if (!stoped)
                 {
                     stoped = true;
@@ -229,7 +245,7 @@ public class PlayerController : MonoBehaviour
                     rotationX = 0;
                 }
             }
-
+         
             transform.Rotate(0, rotationX, 0, Space.World);
             #endregion
 
@@ -247,6 +263,13 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Aim", (Input.GetButton("Aim") && armed));
         #endregion
     }
+
+    IEnumerator ShortAtack()
+    {
+        anim.SetTrigger("ShortAtack");
+        yield return new WaitForSeconds(shortAtackDelay());
+        atacking = false;
+    } 
 
     void Pause()
     {
