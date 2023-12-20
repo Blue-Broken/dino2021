@@ -15,7 +15,7 @@ MonoBehaviour:
   version: 5
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -23,8 +23,10 @@ Material:
   m_Name: Mini_Leaves
   m_Shader: {fileID: -6465566751694194690, guid: 9d5cbc41aca75ea4e864c3c37158b037,
     type: 3}
-  m_ShaderKeywords: _ALPHATEST_ON _RECEIVE_SHADOWS_OFF _SPECULAR_SETUP
-  m_LightmapFlags: 4
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _RECEIVE_SHADOWS_OFF
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
   m_CustomRenderQueue: -1
@@ -93,6 +95,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - Vector1_56F8B87E: 0.25
     - Vector1_65D34530: 1
@@ -116,10 +119,12 @@ Material:
     - _NearClipDarken: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.005
+    - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 0
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
+    - _Smothness: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
@@ -132,3 +137,4 @@ Material:
     - _Color: {r: 0.62107426, g: 1, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+  m_BuildTextureStacks: []

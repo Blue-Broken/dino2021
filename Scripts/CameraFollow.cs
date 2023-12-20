@@ -61,6 +61,7 @@ public class CameraFollow : MonoBehaviour
                     }
 
                     Quaternion rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.eulerAngles.x + rotationY, cameraLookClose.eulerAngles.y, 0), sensibility * 4f * Time.fixedDeltaTime);
+                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, rotation.eulerAngles.y, transform.eulerAngles.z);
 
                     if(rotation.eulerAngles.x < 0)
                     {

@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+        Application.targetFrameRate = 60;
     }
 
     public float Propotional(float X, float maxX, float minX, float maxY, float minY)

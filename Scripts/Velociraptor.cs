@@ -13,6 +13,7 @@ public class Velociraptor : EnemyBase
     public float atackTime;
     public int criticalDamangeMultiply;
     public int atackMultiplyDamange;
+    public AudioSource atk;
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
@@ -69,6 +70,7 @@ public class Velociraptor : EnemyBase
     {
         atacking = true;
         enemyAnim.SetBool("Atack", true);
+        atk.Play();
         StartCoroutine(AtackCicle());
     }
 

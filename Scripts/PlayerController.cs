@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     [Header("Variables of Animation")]
     public Animator animator;
     public GameObject spine;
+    public AudioSource gfxaudio;
 
     [Header("Variables of Interacion")]
     public Transform[] colliderPivots = new Transform[2];
@@ -137,7 +138,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Test Area
-        if (Input.GetMouseButtonDown(2))
+        if (Input.GetButtonDown("Cure"))
         {
             Recover();
         }
@@ -259,6 +260,10 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                if(gfxaudio)
+                {
+                  gfxaudio.Stop();
+                }              
                 pauseScreen.SetActive(true);
                 gameM.paused = true;
                 Time.timeScale = 0f;
@@ -493,6 +498,7 @@ public class PlayerController : MonoBehaviour
 
             if (life <= 0)
             {
+                animator.ResetTrigger("Damage");
                 if(!Died)
                 {
                     Died = true;
@@ -513,6 +519,9 @@ public class PlayerController : MonoBehaviour
     IEnumerator Death()
     {
         Vector4 colorAlpha = Vector4.zero;
+        animator.SetBool("Dead", true);
+
+        yield return new WaitForSeconds(0.5f);
 
         for(int i = 0; i < 10; i++)
         {

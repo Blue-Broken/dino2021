@@ -20,21 +20,25 @@ public class CheckQuickTime : MonoBehaviour
         {            
             called = false;
             Debug.Log("Checked");
+            Debug.Log(QuickTimeControll.pressedTimes);
             if (QuickTimeControll.pressedTimes < pressedTimesNeeded)
             {
+                
                 if (!defeated)
                 {
                     Debug.Log("SetDefeted");
                     defeatCutscene.SetActive(true);
                     currentCutscene.SetActive(false);
                     defeated = true;
-                    gameObject.SetActive(false);
+                    //gameObject.SetActive(false);
                 }
                 else
                 {
                     Debug.Log("Load Defeat");
-                    StartCoroutine(LoadPassed());
+                   
                 }
+
+                StartCoroutine(LoadPassed());
             }
         }
     }

@@ -36,7 +36,7 @@ public class RestartControll : MonoBehaviour
                 choice = 0;
             }
 
-            choiceSprite.position = choicePositions[choice].position;
+            choiceSprite.position = choicePositions[choice].position + new Vector3(0,10,0);
         }
 
         if ((Input.GetButtonDown("Submit") || Input.GetButtonDown("Action")) && showingOptions)
@@ -60,16 +60,22 @@ public class RestartControll : MonoBehaviour
 
         if(choice == 1)
         {
+            gameM.currentCheckPoint = 0;
+            gameM.currentCartrigdes = 0;
+            gameM.currentHealthPacks = 0;
+            gameM.currentMunition = 0;
+            gameM.currentStage = 0;
             var loading = SceneManager.LoadSceneAsync("TitleScreen");
 
             while (!loading.isDone)
             {
                 yield return null;
             }
+            
         }
         else
         {
-            gameM.LoadCurrentState();
+           gameM.LoadCurrentState();         
         }
     }
 

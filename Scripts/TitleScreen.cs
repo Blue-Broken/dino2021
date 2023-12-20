@@ -9,6 +9,7 @@ public class TitleScreen : MonoBehaviour
     private GameManager gameM;
     public Text logoText;
     public Text buttonText;
+    public GameObject controlsPage;
     private void Start()
     {
         gameM = GameManager.gameManager;
@@ -45,5 +46,15 @@ public class TitleScreen : MonoBehaviour
     void LoadNextScene()
     {
         GameManager.gameManager.LoadNextStage();
+    }
+
+    public void opencontrol()
+    {
+        controlsPage.SetActive(true);
+    }
+
+    public void closecontrol()
+    {
+        controlsPage.SetActive(false);
     }
 }
